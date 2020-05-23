@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+
+:root {
+  --primary-color: #d3a4d6;
+  
+  --secondary-color: #9c88f9;
+  --third-color: #d8a1fd;
+  --primary-grey-color:#c4c4c4;
+  --fourth-color: #9c88f9;
+  --plus-money:green;
+  --minus-money:red;5
+  --box-shadow-color: #e1d9f5;
+  --box-border-color: #aba8b4;
+  --box-shadow: 0 1px 3px rgba(0, 0, 0, 1), 0 1px 2px rgba(95, 95, 95, 0.24);
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(245, 231, 252); /*  primary */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Anton";
+}
+.container {
+  margin: 30px auto;
+  width: 345px;
+}
+h1 {
+  letter-spacing: 2px;
+  margin: 0;
+}
+h3 {
+  border-bottom: 1px solid #bbbbbb;
+  padding-bottom: 10px;
+  margin: 40px 0 10px;
+}
+
+h4 {
+  margin:10px 0 0 0;
+  text-transform: uppercase;
+}
+
+/*This class seperates the income and expense into a its own box on the display. Gives off a box-shadow vibe.*/
+.inc-exp-container {
+  letter-spacing: 1px;
+  background-color: whitesmoke;
+  border-bottom: solid;
+  border-radius: 2px;
+  border-color: var(--box-border-color);
+  box-shadow: -7px 5px 10px var(--box-shadow-color);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.inc-exp-container > div {
+  flex: 1;
+  text-align: center;
+}
+.inc-exp-container > div:first-of-type {
+  border-right: solid;
+  border-color: var(--box-shadow-color);
+}
+
+.money {
+  font-size: 20px;
+  letter-spacing: 1px;
+  margin: 5px 0;
+}
+.money.minus {
+  color: var(--minus-money);
+}
+.money.plus{
+  color: var(--plus-money);
+}
+
+label {
+  display: inline-block;
+  margin: 10px 0;
+}
+input[type="text"],
+input[type="number"] {
+  border: 1px solid #dedede;
+  border-radius: 2px;
+  display: block;
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+}
+.btn {
+  background-color: var(--primary-color);
+  box-shadow: black;
+  border: 0;
+  display: block;
+  font-size: 16px;
+  margin: 10px 0 30px;
+  padding: 10px;
+  width: 100%;
+}
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 40px;
+}
+.list li {
+  background-color: var(--fifthChoice-color);
+}
