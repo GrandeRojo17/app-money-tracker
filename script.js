@@ -20,24 +20,13 @@ const dummyTransactions = [
   },
 ];
 let transactions = dummyTransactions;
-//add Transactions to the DOM list.
-function updateValues() {
-  const amounts = transactions.map((transaction) => transaction.amount);
-  console.log(amounts);
-}
-function addTransactionDOM(transaction) {
-  //get sign
-  const sign = transaction.amount < 0 ? "-" : "+";
-  const item = document.createElement("li");
-  //add class based on value.
-  item.classList.add(transaction.amount < 0 ? "minus" : "plus");
+//add transaction
 
-  item.innerHTML = `
-    ${transaction.text}<span>${sign}${Math.abs(transaction.amount)}
-    </span> <button class="delete-btn">x</button>
-    `;
-  list.appendChild(item);
-}
+//add Transactions to the DOM list.
+// function updateValues() {
+//   const amounts = transactions.map((transaction) => transaction.amount);
+//   console.log(amounts);
+// }
 //Update balance income and expense
 function updateValues() {
   const amounts = transactions.map((transaction) => transaction.amount);
@@ -51,6 +40,7 @@ function updateValues() {
     .filter((item) => item < 0)
     .reduce((acc, item) => (acc -= item), 0)
     .toFixed(2);
+
   console.log("Income: " + income);
   console.log("Expenses: " + expense);
 
@@ -59,16 +49,58 @@ function updateValues() {
     return total + num;
   }
 
-  console.log("Account balance is  = " + totalT);
   balance.innerText = `$${totalT}`;
   money_plus.innerText = `$${income}`;
   money_minus.innerText = `$${expense}`;
 }
+
+function addTransaction(e) {
+  e.preventDefault();
+
+  if (text.value.trim() === "" || amount.value.trim() === "") {
+    alert("Please add a text and amount");
+  } else {
+    const transactionMade = {
+      id: generateID(),
+      text: text.value,
+      amount: +amount.value,
+    }; //Adding a plus sign above turns the string into int.
+
+    transactions.push(transactionMade);
+    addTransactionDOM(transactionMade);
+    //   //clear the inputs after the update
+    updateValues();
+    text.value = "";
+    amount.value = "";
+  }
+}
+function generateID() {
+  return Math.floor(Math.random() * 10000000000);
+}
+function addTransactionDOM(transaction) {
+  //This function will loop through array of items
+  //get sign
+  const sign = transaction.amount < 0 ? "-" : "+";
+  const item = document.createElement("li");
+  //add class based on value.
+  item.classList.add(transaction.amount < 0 ? "minus" : "plus");
+
+  item.innerHTML = `
+    ${transaction.text}<span>${sign}${Math.abs(transaction.amount)}
+    </span> <button class="delete-btn">x</button>
+    `;
+  list.appendChild(item);
+}
+
 //Init the process
 function init() {
   console.log(transactions);
   list.innerHTML = "";
   transactions.forEach(addTransactionDOM);
-  updateValues();
+   updateValues();
 }
+
+//INITIALIZER
 init();
+
+form.addEventListener("submit", addTransaction);
